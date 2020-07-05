@@ -29,3 +29,8 @@ type User struct {
 	TogetherTasks []TogetherTask `json:"together_tasks"`
 	PrivateTasks []PrivateTask `json:"private_tasks"`
 }
+
+type RtMsg struct {
+	Msg string `json:"msg"`
+	Code int `json:"code"`
+}
