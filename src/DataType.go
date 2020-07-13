@@ -22,12 +22,12 @@ type User struct {
 	Age string `json:"age"`
 	Bio string `json:"bio"`
 	Constellation string `json:"constellation"`
-	Blood string `json:"blood"`
 	Birthday string `json:"birthday"`
 	Sex string `json:"sex"`
 	ImgPath string `json:"img_path"`
 	TogetherTasks []TogetherTask `json:"together_tasks"`
 	PrivateTasks []PrivateTask `json:"private_tasks"`
+	Friends []string `json:"friends"`
 }
 
 type RtMsg struct {

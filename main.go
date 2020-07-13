@@ -26,6 +26,12 @@ func main() {
 
 	api.Post("/register", src.Register)
 
-	//_ = app.Run(iris.Addr(":8080"))
+	api.Post("/UserInfo", src.GetUser)
+
+	api.Post("/ChangeProfile", src.ChangeProfile)
+
+	api.Post("/GetFriend", src.GetFriendsInfo)
+
+	_ = app.Run(iris.Addr(":8080"))
 
 }
