@@ -10,6 +10,7 @@ import (
 )
 
 const FilePath = "./img/"
+const URLPath = "/img/"
 
 func Register(ctx iris.Context) {
 	// get info
@@ -34,7 +35,7 @@ func Register(ctx iris.Context) {
 	}
 	defer out.Close()
 	_, _ = io.Copy(out, file)
-	ImgPath := FilePath + filename
+	ImgPath := URLPath + filename
 
 	// create User info
 	UserData := User {
@@ -51,6 +52,7 @@ func Register(ctx iris.Context) {
 		TogetherTasks: make([]TogetherTask, 0),
 		PrivateTasks: make([]PrivateTask, 0),
 		Friends: make([]string, 0),
+		Messages: make([]Message, 0),
 	}
 	var result User
 	collection := Client.Database("WithYou").Collection("UserInfo")

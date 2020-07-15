@@ -32,6 +32,7 @@ func main() {
 
 	api.Post("/GetFriend", src.GetFriendsInfo)
 
+	api.Get("/img/{filename}", src.GetImg)
 	_ = app.Run(iris.Addr(":8080"))
 
 }
