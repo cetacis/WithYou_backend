@@ -6,6 +6,7 @@ type TogetherTask struct {
 	Comment string `json:"comment"`
 	FriendEmail string `json:"friend_email"`
 	IsFinished bool `json:"is_finished"`
+	TaskType int `json:"task_type"`
 }
 
 type PrivateTask struct {
@@ -35,6 +36,16 @@ type User struct {
 	PrivateTasks []PrivateTask `json:"private_tasks"`
 	Friends []string `json:"friends"`
 	Messages []Message `json:"messages"`
+}
+
+type TaskQueue struct {
+	TaskId string `json:"task_id"`
+	Email string `json:"email"`
+}
+
+type MatchInfo struct {
+	First string `json:"first"`
+	Second string `json:"second"`
 }
 
 type RtMsg struct {
