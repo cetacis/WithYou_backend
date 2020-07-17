@@ -56,18 +56,7 @@ func Register(ctx iris.Context) {
 		return
 	}
 
-<<<<<<< HEAD
-	// insert register data
-	_, err = collection.InsertOne(context.TODO(), UserData)
-	if err != nil {
-		RtData := RtMsg {
-			Msg: "Register error",
-			Code: 1,
-		}
-		_, _ = ctx.JSON(RtData)
-		return
-	}
-=======
+
 	api.Post("/register", src.Register)
 
 	api.Post("/UserInfo", src.GetUser)
@@ -85,7 +74,6 @@ func Register(ctx iris.Context) {
 	api.Post("/GetMatch", src.GetMatch)
 
 	_ = app.Run(iris.Addr(":8080"))
->>>>>>> 4af942fec19a1940e1240c4c9aa692906388cfa8
 
 	RtData := RtMsg {
 		Msg: "Register succeed",
