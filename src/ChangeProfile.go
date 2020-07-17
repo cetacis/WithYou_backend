@@ -20,6 +20,7 @@ func ChangeProfile(ctx iris.Context) {
 		_, _ = ctx.JSON(RtData)
 		return
 	}
+	fmt.Println(UserInfo)
 	email := UserInfo.Email
 	pass := UserInfo.Password
 	collection := Client.Database("WithYou").Collection("UserInfo")

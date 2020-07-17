@@ -2,6 +2,7 @@ package src
 
 import (
 	"context"
+	"fmt"
 	"github.com/kataras/iris"
 )
 
@@ -13,8 +14,20 @@ func Match(ctx iris.Context) {
 		Email: Email,
 	}
 
+	var foo TaskQueue
 	collection := Client.Database("WithYou").Collection("MatchQueue")
-	_, err := collection.InsertOne(context.TODO(), QueueData)
+	err := collection.FindOne(context.TODO(), QueueData).Decode(&foo)
+	fmt.Println(foo, err)
+	if err == nil {
+		RtData := RtMsg {
+			Msg: "You are queuing!",
+			Code: -2,
+		}
+		_, _ = ctx.JSON(RtData)
+		return
+	}
+
+	_, err = collection.InsertOne(context.TODO(), QueueData)
 	if err != nil {
 		RtData := RtMsg {
 			Msg: "Server Error!",
