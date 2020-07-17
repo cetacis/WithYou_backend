@@ -77,6 +77,13 @@ func Register(ctx iris.Context) {
 	api.Post("/GetFriend", src.GetFriendsInfo)
 
 	api.Get("/img/{filename}", src.GetImg)
+
+	api.Post("/upload", src.PostImg)
+
+	api.Post("/match", src.Match)
+
+	api.Post("/GetMatch", src.GetMatch)
+
 	_ = app.Run(iris.Addr(":8080"))
 >>>>>>> 4af942fec19a1940e1240c4c9aa692906388cfa8
 
