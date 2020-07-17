@@ -53,6 +53,7 @@ func Register(ctx iris.Context) {
 		PrivateTasks: make([]PrivateTask, 0),
 		Friends: make([]string, 0),
 		Messages: make([]Message, 0),
+		CurrentTaskId: -1,
 	}
 	var result User
 	collection := Client.Database("WithYou").Collection("UserInfo")
