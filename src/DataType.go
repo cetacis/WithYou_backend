@@ -14,6 +14,12 @@ type PrivateTask struct {
 	IsFinished bool `json:"is_finished"`
 }
 
+type Message struct {
+	Msg string `json:"msg"`
+	IsUser bool `json:"is_user"`
+	IsRead bool `json:"is_read"`
+}
+
 type User struct {
 	Username string `json:"username"`
 	Email string `json:"email"`
@@ -22,12 +28,13 @@ type User struct {
 	Age string `json:"age"`
 	Bio string `json:"bio"`
 	Constellation string `json:"constellation"`
-	Blood string `json:"blood"`
 	Birthday string `json:"birthday"`
 	Sex string `json:"sex"`
 	ImgPath string `json:"img_path"`
 	TogetherTasks []TogetherTask `json:"together_tasks"`
 	PrivateTasks []PrivateTask `json:"private_tasks"`
+	Friends []string `json:"friends"`
+	Messages []Message `json:"messages"`
 }
 
 type RtMsg struct {

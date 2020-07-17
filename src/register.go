@@ -2,13 +2,15 @@ package src
 
 import (
 	"context"
+	"fmt"
 	"github.com/kataras/iris"
 	"go.mongodb.org/mongo-driver/bson"
 	"io"
 	"os"
 )
 
-const FilePath = "./img"
+const FilePath = "./img/"
+const URLPath = "/img/"
 
 func Register(ctx iris.Context) {
 	// get info
@@ -16,7 +18,8 @@ func Register(ctx iris.Context) {
 	Email := ctx.FormValue("email")
 	Pass := ctx.FormValue("pass")
 	// get img
-	file, info, err := ctx.FormFile("img")
+	file, info, err := ctx.FormFile("file")
+	fmt.Println(Name, " 1", Email, "2", Pass)
 	if err != nil {
 		ctx.StatusCode(iris.StatusInternalServerError)
 		ctx.Application().Logger().Warnf("Error while uploading: %v", err.Error())
@@ -32,7 +35,7 @@ func Register(ctx iris.Context) {
 	}
 	defer out.Close()
 	_, _ = io.Copy(out, file)
-	ImgPath := FilePath + filename
+	ImgPath := URLPath + filename
 
 	// create User info
 	UserData := User {
@@ -40,6 +43,16 @@ func Register(ctx iris.Context) {
 		Email: Email,
 		Password: Pass,
 		ImgPath: ImgPath,
+		Mobile: "",
+		Age: "",
+		Bio: "",
+		Constellation: "",
+		Birthday: "",
+		Sex: "",
+		TogetherTasks: make([]TogetherTask, 0),
+		PrivateTasks: make([]PrivateTask, 0),
+		Friends: make([]string, 0),
+		Messages: make([]Message, 0),
 	}
 	var result User
 	collection := Client.Database("WithYou").Collection("UserInfo")
