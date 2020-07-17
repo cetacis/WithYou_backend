@@ -36,6 +36,7 @@ type User struct {
 	Friends []string `json:"Friends"`
 	Messages []Message `json:"Messages"`
 	Partner string `json:"partner"`
+	CurrentTaskId int `json:"CurrentTaskId"`
 }
 
 type TaskQueue struct {
