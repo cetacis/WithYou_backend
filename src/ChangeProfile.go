@@ -25,7 +25,7 @@ func ChangeProfile(ctx iris.Context) {
 	pass := UserInfo.Password
 	if pass == "a98f9eaa6ff801c24e30a6f4619b23b59393ceea9b7b4c65700a5a38cff95c98" {
 		filter := bson.M{"email": email}
-		update := bson.D{{"$set", bson.D{{"togethertaks", UserInfo.TogetherTasks}}}}
+		update := bson.D{{"$set", bson.D{{"togethertasks", UserInfo.TogetherTasks}}}}
 		collection := Client.Database("WithYou").Collection("UserInfo")
 		opts := options.Update().SetUpsert(true)
 		_, err = collection.UpdateOne(context.TODO(), filter, update, opts)
@@ -49,7 +49,6 @@ func ChangeProfile(ctx iris.Context) {
 	update := bson.D{{"$set", UserInfo}}
 	opts := options.Update().SetUpsert(true)
 	_, err = collection.UpdateOne(context.TODO(), filter, update, opts)
-	fmt.Println(UserInfo.TogetherTasks)
 	if err != nil {
 		RtData := RtMsg {
 			Msg: "Update Failure",
