@@ -36,8 +36,24 @@ func GetMatch(ctx iris.Context) {
 		return
 	}
 
+	var foo TaskQueue
 	// haven't matched by other
 	collection = Client.Database("WithYou").Collection("MatchQueue")
+	// IsAddQueue ?
+	err = collection.FindOne(context.TODO(), TaskQueue {
+		Email: Email,
+		TaskId: TaskId,
+	}).Decode(&foo)
+
+	if err != nil {
+		RtData := RtMsg {
+			Msg: "No queue info",
+			Code: 1,
+		}
+		_, _ = ctx.JSON(RtData)
+		return
+	}
+
 	filter = bson.M{"taskid": TaskId}
 	opts := options.Find()
 	cursor, err := collection.Find(context.TODO(), filter, opts)
