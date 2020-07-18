@@ -123,6 +123,15 @@ func GetMatch(ctx iris.Context) {
 				return
 			}
 
+			// add partner info
+			collection = Client.Database("WithYou").Collection("UserInfo")
+			opts := options.Update().SetUpsert(true)
+			filter := bson.M{"email": Email}
+			update := bson.D{{"$set", bson.D{{"partner", result.Email}}}}
+			_, _ = collection.UpdateOne(context.TODO(), filter, update, opts)
+			filter = bson.M{"email": result.Email}
+			update = bson.D{{"$set", bson.D{{"partner", Email}}}}
+			_, _ = collection.UpdateOne(context.TODO(), filter, update, opts)
 			RtData := RtMsg {
 				Msg: result.Email,
 				Code: 0,
